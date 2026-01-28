@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="./asset/css/style.css">
     <style>
         /* ================================
    Base & Reset - Premium Design
@@ -65,7 +65,7 @@ body {
     font-size: 16px;
     line-height: 1.6;
     color: var(--color-text);
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
     background-attachment: fixed;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -101,7 +101,7 @@ body {
     left: 0;
     right: 0;
     height: 4px;
-    background: linear-gradient(90deg, #667eea 0%, #764ba2 50%, #667eea 100%);
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
     background-size: 200% 100%;
     animation: shimmer 3s linear infinite;
 }
@@ -114,7 +114,7 @@ body {
 .invitation-generator__title {
     font-size: clamp(1.5rem, 4vw, 2.5rem);
     font-weight: 800;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -151,7 +151,7 @@ body {
     left: 0;
     right: 0;
     height: 3px;
-    background: linear-gradient(90deg, #667eea 0%, #764ba2 50%, #667eea 100%);
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
     background-size: 200% 100%;
     animation: shimmer 3s linear infinite;
 }
@@ -160,7 +160,7 @@ body {
     color: var(--color-text-secondary);
     font-size: 0.9rem;
     font-weight: 500;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -989,7 +989,7 @@ body {
     position: relative;
     width: fit-content;
     padding: var(--spacing-sm) var(--spacing-md);
-    background: linear-gradient(135deg, rgba(99, 102, 241, 0.95) 0%, rgba(118, 75, 162, 0.95) 100%);
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
     backdrop-filter: blur(10px);
     color: white;
     border-radius: var(--radius-lg);
@@ -1292,7 +1292,7 @@ body {
     font-size: 0.9rem;
     font-weight: 600;
     color: white;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
     border: none;
     border-radius: var(--radius-lg);
     cursor: pointer;
@@ -1449,7 +1449,7 @@ body {
 }
 
 .control-group__tab--active {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
     color: white;
     box-shadow: var(--shadow-md), 0 0 15px rgba(99, 102, 241, 0.3);
     transform: translateY(-1px);
@@ -1488,6 +1488,20 @@ body {
     </style>
 </head>
 <body>
+     <!-- HEADER -->
+    <header class="doitenhinhanhsticky__header" id="doitenhinhanhsticky__header">
+        <!-- render header -->
+    </header>
+    <!-- Đoạn scrip render header -->
+    <script>
+        fetch('./templates/header.html')
+            .then(response => response.text())
+            .then(data => {
+                document.querySelector("#doitenhinhanhsticky__header").innerHTML = data;
+            })
+            .catch(error => console.error('Lỗi:', error));
+    </script>
+
     <main class="invitation-generator">
         <!-- Compact Header -->
         <header class="invitation-generator__header">
@@ -1701,9 +1715,16 @@ Lê Văn C"></textarea>
         </section>
     </main>
 
-    <footer class="invitation-generator__footer">
-        <p class="invitation-generator__copyright">© 2026 Đoàn Thuật</p>
-    </footer>
+    <!-- FOOTER -->
+    <footer class="dvnt-footer" id="dvnt-footer"></footer>
+        <script>
+        fetch('./templates/footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.querySelector("#dvnt-footer").innerHTML = data;
+            })
+            .catch(error => console.error('Lỗi:', error));
+    </script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
@@ -3327,3 +3348,4 @@ document.addEventListener('DOMContentLoaded', init);
     </script>
 </body>
 </html>
+
