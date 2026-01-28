@@ -1,0 +1,3329 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Công cụ tạo thiệp mời tự động hàng loạt - Thêm tên khách mời lên ảnh thiệp chuyên nghiệp">
+    <meta name="keywords" content="tạo thiệp mời, thiệp mời tự động, invitation generator">
+    <title>Công Cụ Tạo Thiệp Mời Hàng Loạt | Auto Invitation Generator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* ================================
+   Base & Reset - Premium Design
+   ================================ */
+:root {
+    --color-primary: #6366F1;
+    --color-primary-dark: #4F46E5;
+    --color-primary-light: #818CF8;
+    --color-secondary: #14B8A6;
+    --color-accent: #F59E0B;
+    --color-background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --color-surface: #FFFFFF;
+    --color-surface-dark: #F8FAFC;
+    --color-text: #1E293B;
+    --color-text-secondary: #64748B;
+    --color-border: #E2E8F0;
+    --color-error: #EF4444;
+    --color-success: #10B981;
+    
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 1.5rem;
+    --spacing-lg: 2rem;
+    --spacing-xl: 3rem;
+    
+    --radius-sm: 0.5rem;
+    --radius-md: 0.75rem;
+    --radius-lg: 1rem;
+    --radius-xl: 1.5rem;
+    
+    --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    --shadow-glow: 0 0 20px rgba(99, 102, 241, 0.3);
+    
+    --transition-base: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--color-text);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background-attachment: fixed;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    min-height: 100vh;
+}
+
+/* ================================
+   Block: invitation-generator
+   ================================ */
+.invitation-generator {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: var(--spacing-md);
+    min-height: 100vh;
+}
+
+.invitation-generator__header {
+    text-align: center;
+    margin-bottom: var(--spacing-lg);
+    padding: var(--spacing-lg) var(--spacing-md);
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-xl);
+    position: relative;
+    overflow: hidden;
+}
+
+.invitation-generator__header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #667eea 0%, #764ba2 50%, #667eea 100%);
+    background-size: 200% 100%;
+    animation: shimmer 3s linear infinite;
+}
+
+@keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
+
+.invitation-generator__title {
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    font-weight: 800;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 0;
+    letter-spacing: -0.02em;
+    text-shadow: 0 2px 10px rgba(102, 126, 234, 0.1);
+}
+
+.invitation-generator__subtitle {
+    font-size: clamp(0.875rem, 2vw, 1rem);
+    color: var(--color-text-secondary);
+}
+
+.invitation-generator__section {
+    margin-bottom: var(--spacing-md);
+}
+
+.invitation-generator__footer {
+    text-align: center;
+    padding: var(--spacing-lg);
+    margin-top: var(--spacing-xl);
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-lg);
+    position: relative;
+    overflow: hidden;
+}
+
+.invitation-generator__footer::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #667eea 0%, #764ba2 50%, #667eea 100%);
+    background-size: 200% 100%;
+    animation: shimmer 3s linear infinite;
+}
+
+.invitation-generator__copyright {
+    color: var(--color-text-secondary);
+    font-size: 0.9rem;
+    font-weight: 500;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* ================================
+   Block: input-panel
+   ================================ */
+.input-panel {
+    background: var(--color-surface);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+    box-shadow: var(--shadow-md);
+}
+
+.input-panel__title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--color-text);
+    margin-bottom: var(--spacing-md);
+    padding-bottom: var(--spacing-sm);
+    border-bottom: 2px solid var(--color-primary);
+}
+
+.input-panel__group {
+    margin-bottom: var(--spacing-md);
+}
+
+.input-panel__group:last-child {
+    margin-bottom: 0;
+}
+
+.input-panel__label {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: var(--spacing-xs);
+}
+
+.input-panel__label-text {
+    font-weight: 600;
+    color: var(--color-text);
+    margin-bottom: 0.25rem;
+}
+
+.input-panel__label-hint {
+    font-size: 0.875rem;
+    color: var(--color-text-secondary);
+}
+
+.input-panel__file {
+    display: none;
+}
+
+.input-panel__button {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    width: 100%;
+    padding: var(--spacing-sm) var(--spacing-md);
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--color-surface);
+    background-color: var(--color-primary);
+    border: none;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: background-color var(--transition-base), transform var(--transition-base);
+    box-shadow: var(--shadow-sm);
+}
+
+.input-panel__button:hover {
+    background-color: var(--color-primary-dark);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.input-panel__button:active {
+    transform: translateY(0);
+}
+
+.input-panel__button--secondary {
+    background-color: var(--color-secondary);
+}
+
+.input-panel__button--secondary:hover {
+    background-color: #059669;
+}
+
+.input-panel__button-icon {
+    font-size: 1.25rem;
+}
+
+.input-panel__button-text {
+    flex: 1;
+    text-align: center;
+}
+
+/* ================================
+   Block: config-panel
+   ================================ */
+.config-panel {
+    background: var(--color-surface);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+    box-shadow: var(--shadow-md);
+}
+
+.config-panel__title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--color-text);
+    margin-bottom: var(--spacing-md);
+    padding-bottom: var(--spacing-sm);
+    border-bottom: 2px solid var(--color-primary);
+}
+
+.config-panel__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+}
+
+.config-panel__group {
+    display: flex;
+    flex-direction: column;
+}
+
+.config-panel__label {
+    font-weight: 600;
+    color: var(--color-text);
+    margin-bottom: var(--spacing-xs);
+    font-size: 0.875rem;
+}
+
+.config-panel__input,
+.config-panel__select {
+    padding: var(--spacing-sm);
+    font-size: 1rem;
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-md);
+    transition: border-color var(--transition-base), box-shadow var(--transition-base);
+    background-color: var(--color-surface);
+}
+
+.config-panel__input:focus,
+.config-panel__select:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+
+.config-panel__color-wrapper {
+    display: flex;
+    gap: var(--spacing-xs);
+    align-items: center;
+}
+
+.config-panel__color-input {
+    width: 60px;
+    height: 44px;
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+}
+
+.config-panel__input--color {
+    flex: 1;
+}
+
+.config-panel__button {
+    padding: var(--spacing-sm) var(--spacing-md);
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--color-surface);
+    background-color: var(--color-secondary);
+    border: none;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: background-color var(--transition-base), transform var(--transition-base);
+    box-shadow: var(--shadow-sm);
+}
+
+.config-panel__button:hover {
+    background-color: #059669;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+/* ================================
+   Block: preview-panel
+   ================================ */
+.preview-panel {
+    background: var(--color-surface);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+    box-shadow: var(--shadow-md);
+}
+
+.preview-panel__title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--color-text);
+    margin-bottom: var(--spacing-md);
+    padding-bottom: var(--spacing-sm);
+    border-bottom: 2px solid var(--color-primary);
+}
+
+.preview-panel__container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-md);
+}
+
+@media (min-width: 768px) {
+    .preview-panel__container {
+        grid-template-columns: 2fr 1fr;
+    }
+}
+
+.preview-panel__canvas-wrapper {
+    position: relative;
+    background: repeating-conic-gradient(#F3F4F6 0% 25%, #E5E7EB 0% 50%) 50% / 20px 20px;
+    border-radius: var(--radius-md);
+    padding: var(--spacing-md);
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: auto;
+}
+
+.preview-panel__canvas {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-lg);
+    cursor: crosshair;
+}
+
+.preview-panel__info {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.preview-panel__info-text {
+    padding: var(--spacing-sm);
+    background-color: var(--color-background);
+    border-radius: var(--radius-md);
+    font-size: 0.875rem;
+    color: var(--color-text-secondary);
+    text-align: center;
+}
+
+.preview-panel__input {
+    padding: var(--spacing-sm);
+    font-size: 1rem;
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-md);
+    transition: border-color var(--transition-base), box-shadow var(--transition-base);
+}
+
+.preview-panel__input:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+
+.preview-panel__button {
+    padding: var(--spacing-sm) var(--spacing-md);
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--color-surface);
+    background-color: var(--color-primary);
+    border: none;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: background-color var(--transition-base), transform var(--transition-base);
+    box-shadow: var(--shadow-sm);
+}
+
+.preview-panel__button:hover {
+    background-color: var(--color-primary-dark);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+/* ================================
+   Block: output-panel
+   ================================ */
+.output-panel {
+    background: var(--color-surface);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+    box-shadow: var(--shadow-md);
+}
+
+.output-panel__title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--color-text);
+    margin-bottom: var(--spacing-md);
+    padding-bottom: var(--spacing-sm);
+    border-bottom: 2px solid var(--color-primary);
+}
+
+.output-panel__controls {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+}
+
+.output-panel__group {
+    display: flex;
+    flex-direction: column;
+}
+
+.output-panel__label {
+    font-weight: 600;
+    color: var(--color-text);
+    margin-bottom: var(--spacing-xs);
+    font-size: 0.875rem;
+}
+
+.output-panel__select {
+    padding: var(--spacing-sm);
+    font-size: 1rem;
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-md);
+    transition: border-color var(--transition-base);
+    background-color: var(--color-surface);
+}
+
+.output-panel__select:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+
+.output-panel__range {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 8px;
+    border-radius: 5px;
+    background: var(--color-border);
+    outline: none;
+    margin-bottom: var(--spacing-xs);
+}
+
+.output-panel__range::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--color-primary);
+    cursor: pointer;
+    transition: background-color var(--transition-base);
+}
+
+.output-panel__range::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--color-primary);
+    cursor: pointer;
+    border: none;
+}
+
+.output-panel__range:hover::-webkit-slider-thumb {
+    background: var(--color-primary-dark);
+}
+
+.output-panel__range-value {
+    font-size: 0.875rem;
+    color: var(--color-text-secondary);
+    font-weight: 600;
+}
+
+.output-panel__button {
+    padding: var(--spacing-md) var(--spacing-lg);
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--color-surface);
+    background-color: var(--color-success);
+    border: none;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: background-color var(--transition-base), transform var(--transition-base);
+    box-shadow: var(--shadow-md);
+    margin-bottom: var(--spacing-md);
+}
+
+.output-panel__button--primary {
+    width: 100%;
+}
+
+.output-panel__button:hover {
+    background-color: #059669;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.output-panel__button:disabled {
+    background-color: var(--color-border);
+    cursor: not-allowed;
+    transform: none;
+}
+
+.output-panel__progress {
+    position: relative;
+    height: 50px;
+    background: linear-gradient(135deg, rgba(226, 232, 240, 0.5) 0%, rgba(203, 213, 225, 0.5) 100());
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm), inset 0 2px 4px rgba(0, 0, 0, 0.06);
+    border: 1px solid rgba(99, 102, 241, 0.1);
+}
+
+.output-panel__progress-bar {
+    height: 100%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background-size: 200% 100%;
+    animation: shimmer 2s linear infinite;
+    transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 0 20px rgba(99, 102, 241, 0.5);
+    position: relative;
+    overflow: hidden;
+}
+
+.output-panel__progress-bar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    animation: slide 1.5s ease-in-out infinite;
+}
+
+@keyframes slide {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+.output-panel__progress-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--color-text);
+    z-index: 1;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+/* ================================
+   Responsive Breakpoints
+   ================================ */
+@media (max-width: 767px) {
+    .invitation-generator {
+        padding: var(--spacing-md) var(--spacing-sm);
+    }
+    
+    .config-panel__grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .preview-panel__canvas-wrapper {
+        min-height: 300px;
+    }
+}
+
+@media (max-width: 480px) {
+    .invitation-generator__title {
+        font-size: 1.5rem;
+    }
+    
+    .input-panel,
+    .config-panel,
+    .preview-panel,
+    .output-panel {
+        padding: var(--spacing-md);
+    }
+}
+
+/* ================================
+   Accessibility
+   ================================ */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+:focus-visible {
+    outline: 3px solid var(--color-primary);
+    outline-offset: 2px;
+}
+
+/* ================================
+   Drag Text Indicator
+   ================================ */
+.preview-panel__canvas--dragging {
+    cursor: move !important;
+}
+
+.preview-panel__drag-hint {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+    color: white;
+    border-radius: var(--radius-md);
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-align: center;
+    margin-bottom: var(--spacing-sm);
+}
+
+.text-position-indicator {
+    position: absolute;
+    pointer-events: none;
+    border: 2px dashed var(--color-primary);
+    background: rgba(79, 70, 229, 0.1);
+    border-radius: var(--radius-sm);
+    transition: all 0.1s ease;
+}
+
+/* ================================
+   Font Selector Styles
+   ================================ */
+.config-panel__font-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+}
+
+.config-panel__font-select {
+    padding: var(--spacing-sm);
+    font-size: 1rem;
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-md);
+    transition: border-color var(--transition-base);
+    background-color: var(--color-surface);
+}
+
+.config-panel__font-select:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+
+.config-panel__font-preview {
+    padding: var(--spacing-sm);
+    background: var(--color-background);
+    border-radius: var(--radius-sm);
+    text-align: center;
+    font-size: 1.25rem;
+    min-height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.config-panel__upload-font-btn {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    font-size: 0.875rem;
+    background: var(--color-background);
+    border: 2px dashed var(--color-border);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: all var(--transition-base);
+    color: var(--color-text-secondary);
+}
+
+.config-panel__upload-font-btn:hover {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+    background: rgba(79, 70, 229, 0.05);
+}
+
+.config-panel__grid--wide {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+/* ================================
+   Position Slider Styles
+   ================================ */
+.config-panel__position-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.config-panel__position-input-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.config-panel__position-input-row input[type="number"] {
+    width: 80px;
+    flex-shrink: 0;
+}
+
+.config-panel__position-input-row input[type="range"] {
+    flex: 1;
+    height: 8px;
+    border-radius: 4px;
+    background: var(--color-border);
+    -webkit-appearance: none;
+    appearance: none;
+    cursor: pointer;
+}
+
+.config-panel__position-input-row input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--color-primary);
+    cursor: grab;
+    transition: transform 0.1s, background-color 0.2s;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.config-panel__position-input-row input[type="range"]::-webkit-slider-thumb:hover {
+    background: var(--color-primary-dark);
+    transform: scale(1.1);
+}
+
+.config-panel__position-input-row input[type="range"]::-webkit-slider-thumb:active {
+    cursor: grabbing;
+    transform: scale(1.2);
+}
+
+.config-panel__position-input-row input[type="range"]::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--color-primary);
+    cursor: grab;
+    border: none;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.config-panel__position-max {
+    font-size: 0.75rem;
+    color: var(--color-text-secondary);
+    min-width: 50px;
+    text-align: right;
+}
+
+/* ================================
+   Preview Gallery Styles
+   ================================ */
+.preview-gallery {
+    margin-top: var(--spacing-md);
+    padding-top: var(--spacing-md);
+    border-top: 1px solid var(--color-border);
+}
+
+.preview-gallery__title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-text);
+    margin-bottom: var(--spacing-sm);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+}
+
+.preview-gallery__count {
+    font-size: 0.875rem;
+    color: var(--color-text-secondary);
+    font-weight: normal;
+}
+
+.preview-gallery__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-sm);
+}
+
+@media (min-width: 768px) {
+    .preview-gallery__grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+.preview-gallery__item {
+    position: relative;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    transition: transform var(--transition-base), box-shadow var(--transition-base);
+    cursor: pointer;
+    aspect-ratio: 4/3;
+}
+
+.preview-gallery__item:hover {
+    transform: scale(1.02);
+    box-shadow: var(--shadow-md);
+}
+
+.preview-gallery__item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.preview-gallery__item-name {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: var(--spacing-xs);
+    background: linear-gradient(transparent, rgba(0,0,0,0.7));
+    color: white;
+    font-size: 0.75rem;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.preview-gallery__more-btn {
+    width: 100%;
+    padding: var(--spacing-sm);
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--color-primary);
+    background: var(--color-background);
+    border: 2px dashed var(--color-primary);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all var(--transition-base);
+}
+
+.preview-gallery__more-btn:hover {
+    background: rgba(79, 70, 229, 0.1);
+}
+
+.preview-gallery__empty {
+    text-align: center;
+    padding: var(--spacing-md);
+    color: var(--color-text-secondary);
+    font-size: 0.875rem;
+}
+
+/* ================================
+   Editor Workspace Layout - Premium Design
+   ================================ */
+.editor-workspace {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-lg);
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border-radius: var(--radius-xl);
+    padding: var(--spacing-lg);
+    box-shadow: var(--shadow-xl), 0 0 0 1px rgba(255, 255, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.editor-workspace::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 20% 50%, rgba(99, 102, 241, 0.05) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+@media (min-width: 1024px) {
+    .editor-workspace {
+        grid-template-columns: 1fr 400px;
+        min-height: 700px;
+    }
+}
+
+.editor-workspace__canvas-area {
+    position: relative;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-md);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: var(--spacing-sm);
+    min-height: 500px;
+    overflow: auto;
+    max-height: 85vh;
+    box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.editor-workspace__canvas {
+    /* Giữ kích thước gốc, chỉ scroll nếu quá lớn */
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-xl), 0 0 40px rgba(99, 102, 241, 0.15);
+    cursor: crosshair;
+    transition: transform var(--transition-base), box-shadow var(--transition-base);
+    /* Không ép max-width/max-height để giữ nguyên tỉ lệ */
+}
+
+.editor-workspace__canvas:hover {
+    transform: scale(1.005);
+    box-shadow: var(--shadow-xl), 0 0 60px rgba(99, 102, 241, 0.25);
+}
+
+.editor-workspace__hint {
+    position: relative;
+    width: fit-content;
+    padding: var(--spacing-sm) var(--spacing-md);
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.95) 0%, rgba(118, 75, 162, 0.95) 100%);
+    backdrop-filter: blur(10px);
+    color: white;
+    border-radius: var(--radius-lg);
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-align: center;
+    box-shadow: var(--shadow-lg), var(--shadow-glow);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    animation: pulse-hint 2s ease-in-out infinite;
+}
+
+@keyframes pulse-hint {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-3px); }
+}
+
+/* Zoom Controls */
+.zoom-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    border: 1px solid rgba(99, 102, 241, 0.1);
+}
+
+.zoom-controls__btn {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-text);
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    border: 1px solid rgba(99, 102, 241, 0.2);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all var(--transition-base);
+}
+
+.zoom-controls__btn:hover {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    transform: scale(1.05);
+    box-shadow: var(--shadow-md), 0 0 15px rgba(99, 102, 241, 0.3);
+}
+
+.zoom-controls__btn:active {
+    transform: scale(0.95);
+}
+
+.zoom-controls__btn--fit,
+.zoom-controls__btn--reset {
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+.zoom-controls__value {
+    min-width: 50px;
+    text-align: center;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Canvas Scroll Container */
+.canvas-scroll-container {
+    flex: 1;
+    width: 100%;
+    overflow: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-sm);
+}
+
+.canvas-scroll-container::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+.canvas-scroll-container::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 5px;
+}
+
+.canvas-scroll-container::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 5px;
+}
+
+.canvas-scroll-container::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+}
+
+.editor-workspace__controls {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    overflow-y: auto;
+    max-height: 75vh;
+    padding-right: var(--spacing-xs);
+}
+
+.editor-workspace__controls::-webkit-scrollbar {
+    width: 6px;
+}
+
+.editor-workspace__controls::-webkit-scrollbar-track {
+    background: var(--color-background);
+    border-radius: 3px;
+}
+
+.editor-workspace__controls::-webkit-scrollbar-thumb {
+    background: var(--color-border);
+    border-radius: 3px;
+}
+
+.editor-workspace__controls::-webkit-scrollbar-thumb:hover {
+    background: var(--color-primary);
+}
+
+/* Compact control groups - Premium Design */
+.control-group {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 250, 252, 0.9) 100%);
+    backdrop-filter: blur(10px);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-md);
+    box-shadow: var(--shadow-md), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    transition: transform var(--transition-base), box-shadow var(--transition-base);
+}
+
+.control-group:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+.control-group__title {
+    font-size: 0.8rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-bottom: var(--spacing-sm);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+}
+
+.control-group__row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-xs);
+}
+
+.control-group__item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.control-group__label {
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: var(--color-text-secondary);
+}
+
+.control-group__input {
+    padding: 8px 12px;
+    font-size: 0.875rem;
+    border: 2px solid transparent;
+    border-radius: var(--radius-md);
+    background: var(--color-surface);
+    box-shadow: var(--shadow-sm), inset 0 1px 2px rgba(0, 0, 0, 0.05);
+    transition: all var(--transition-base);
+}
+
+.control-group__input:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: var(--shadow-md), 0 0 0 3px rgba(99, 102, 241, 0.1);
+    transform: translateY(-1px);
+}
+
+.control-group__slider {
+    width: 100%;
+    height: 8px;
+    border-radius: 10px;
+    background: linear-gradient(90deg, #e2e8f0 0%, #cbd5e1 100%);
+    -webkit-appearance: none;
+    appearance: none;
+    cursor: pointer;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: all var(--transition-base);
+}
+
+.control-group__slider:hover {
+    background: linear-gradient(90deg, #cbd5e1 0%, #94a3b8 100%);
+}
+
+.control-group__slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    cursor: grab;
+    box-shadow: var(--shadow-md), 0 0 10px rgba(99, 102, 241, 0.3);
+    transition: all var(--transition-base);
+}
+
+.control-group__slider::-webkit-slider-thumb:hover {
+    transform: scale(1.15);
+    box-shadow: var(--shadow-lg), 0 0 15px rgba(99, 102, 241, 0.5);
+}
+
+.control-group__slider::-webkit-slider-thumb:active {
+    cursor: grabbing;
+    transform: scale(1.05);
+}
+
+.control-group__select {
+    padding: 8px 12px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    border: 2px solid transparent;
+    border-radius: var(--radius-md);
+    background: var(--color-surface);
+    box-shadow: var(--shadow-sm), inset 0 1px 2px rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+    transition: all var(--transition-base);
+}
+
+.control-group__select:hover {
+    border-color: rgba(99, 102, 241, 0.3);
+}
+
+.control-group__select:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: var(--shadow-md), 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+.control-group__color-row {
+    display: flex;
+    gap: var(--spacing-xs);
+    align-items: center;
+}
+
+.control-group__color-picker {
+    width: 48px;
+    height: 48px;
+    border: 3px solid white;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    padding: 0;
+    box-shadow: var(--shadow-md), 0 0 0 1px rgba(0, 0, 0, 0.1);
+    transition: all var(--transition-base);
+}
+
+.control-group__color-picker:hover {
+    transform: scale(1.05);
+    box-shadow: var(--shadow-lg), 0 0 20px rgba(99, 102, 241, 0.3);
+}
+
+.control-group__text-input {
+    padding: 10px 14px;
+    font-size: 1rem;
+    font-weight: 500;
+    border: 2px solid transparent;
+    border-radius: var(--radius-lg);
+    background: var(--color-surface);
+    box-shadow: var(--shadow-sm), inset 0 1px 2px rgba(0, 0, 0, 0.05);
+    width: 100%;
+    transition: all var(--transition-base);
+}
+
+.control-group__text-input:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: var(--shadow-md), 0 0 0 3px rgba(99, 102, 241, 0.1);
+    transform: translateY(-1px);
+}
+
+.control-group__button {
+    padding: 10px 16px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: white;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
+    border-radius: var(--radius-lg);
+    cursor: pointer;
+    transition: all var(--transition-base);
+    width: 100%;
+    box-shadow: var(--shadow-md), 0 0 20px rgba(99, 102, 241, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.control-group__button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s;
+}
+
+.control-group__button:hover::before {
+    left: 100%;
+}
+
+.control-group__button:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg), 0 0 30px rgba(99, 102, 241, 0.4);
+}
+
+.control-group__button:active {
+    transform: translateY(0);
+}
+
+.control-group__button--success {
+    background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+    box-shadow: var(--shadow-md), 0 0 20px rgba(16, 185, 129, 0.2);
+}
+
+.control-group__button--success:hover {
+    box-shadow: var(--shadow-lg), 0 0 30px rgba(16, 185, 129, 0.4);
+}
+
+.control-group__status {
+    padding: 8px 12px;
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+    border-radius: var(--radius-md);
+    font-size: 0.8rem;
+    color: var(--color-text-secondary);
+    text-align: center;
+    border: 1px solid rgba(99, 102, 241, 0.1);
+    font-weight: 500;
+}
+
+/* Upload buttons row */
+.upload-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-xs);
+}
+
+.upload-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    padding: var(--spacing-md);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 250, 252, 0.9) 100%);
+    border: 2px dashed rgba(99, 102, 241, 0.3);
+    border-radius: var(--radius-lg);
+    cursor: pointer;
+    transition: all var(--transition-base);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.upload-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+    opacity: 0;
+    transition: opacity var(--transition-base);
+}
+
+.upload-btn:hover::before {
+    opacity: 1;
+}
+
+.upload-btn:hover {
+    border-color: var(--color-primary);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md), 0 0 20px rgba(99, 102, 241, 0.15);
+}
+
+.upload-btn__icon {
+    font-size: 2rem;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+    transition: transform var(--transition-base);
+}
+
+.upload-btn:hover .upload-btn__icon {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.upload-btn__text {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--color-text);
+    letter-spacing: 0.3px;
+}
+
+.upload-btn--active {
+    border-color: var(--color-success);
+    border-style: solid;
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(5, 150, 105, 0.1) 100%);
+    box-shadow: var(--shadow-md), 0 0 20px rgba(16, 185, 129, 0.2);
+}
+
+.upload-btn--active .upload-btn__text {
+    color: var(--color-success);
+    font-weight: 700;
+}
+
+/* Tabs for guest input mode - Premium Design */
+.control-group__tabs {
+    display: flex;
+    gap: 4px;
+    background: linear-gradient(135deg, rgba(226, 232, 240, 0.5) 0%, rgba(203, 213, 225, 0.5) 100%);
+    border-radius: var(--radius-lg);
+    padding: 4px;
+    margin-bottom: var(--spacing-sm);
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.control-group__tab {
+    flex: 1;
+    padding: 8px 12px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--color-text-secondary);
+    background: transparent;
+    border: none;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all var(--transition-base);
+    position: relative;
+}
+
+.control-group__tab:hover {
+    color: var(--color-text);
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.control-group__tab--active {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    box-shadow: var(--shadow-md), 0 0 15px rgba(99, 102, 241, 0.3);
+    transform: translateY(-1px);
+}
+
+.control-group__textarea {
+    width: 100%;
+    padding: 10px 12px;
+    font-size: 0.875rem;
+    font-family: inherit;
+    border: 2px solid transparent;
+    border-radius: var(--radius-md);
+    background: var(--color-surface);
+    box-shadow: var(--shadow-sm), inset 0 1px 2px rgba(0, 0, 0, 0.05);
+    resize: vertical;
+    min-height: 100px;
+    transition: all var(--transition-base);
+}
+
+.control-group__textarea:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: var(--shadow-md), 0 0 0 3px rgba(99, 102, 241, 0.1);
+    transform: translateY(-1px);
+}
+
+.guest-input-mode {
+    animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+    </style>
+</head>
+<body>
+    <main class="invitation-generator">
+        <!-- Compact Header -->
+        <header class="invitation-generator__header">
+            <h1 class="invitation-generator__title">🎨 Công Cụ Tạo Thiệp Mời Hàng Loạt</h1>
+        </header>
+
+        <!-- Editor Workspace - Canvas + Controls side by side -->
+        <section class="invitation-generator__section">
+            <div class="editor-workspace">
+                <!-- Canvas Area -->
+                <div class="editor-workspace__canvas-area" id="canvasWrapper">
+                    <div class="editor-workspace__hint" id="dragHint">
+                        🖱️ Click đặt vị trí • Kéo chữ để di chuyển • Kéo góc để resize • Kéo ⟳ để xoay
+                    </div>
+                    <!-- Zoom Controls -->
+                    <div class="zoom-controls">
+                        <button type="button" class="zoom-controls__btn" id="zoomOut" title="Thu nhỏ">➖</button>
+                        <span class="zoom-controls__value" id="zoomValue">100%</span>
+                        <button type="button" class="zoom-controls__btn" id="zoomIn" title="Phóng to">➕</button>
+                        <button type="button" class="zoom-controls__btn zoom-controls__btn--fit" id="zoomFit" title="Vừa khung">⊡</button>
+                        <button type="button" class="zoom-controls__btn zoom-controls__btn--reset" id="zoomReset" title="100%">1:1</button>
+                    </div>
+                    <div class="canvas-scroll-container" id="canvasScrollContainer">
+                        <canvas id="previewCanvas" class="editor-workspace__canvas"></canvas>
+                    </div>
+                </div>
+
+                <!-- Controls Panel -->
+                <div class="editor-workspace__controls">
+                    <!-- Upload Section -->
+                    <div class="control-group">
+                        <div class="control-group__title">📁 Tải lên</div>
+                        <div class="upload-row">
+                            <div class="upload-btn" id="templateUploadBtn" onclick="document.getElementById('templateUpload').click()">
+                                <span class="upload-btn__icon">🖼️</span>
+                                <span class="upload-btn__text">Ảnh Template</span>
+                            </div>
+                        </div>
+                        <input type="file" id="templateUpload" class="input-panel__file" accept="image/jpeg,image/png">
+                        <div class="control-group__status" id="statusText">Chờ tải ảnh template...</div>
+                    </div>
+
+                    <!-- Guest List Input Section -->
+                    <div class="control-group">
+                        <div class="control-group__title"> Danh sách khách mời</div>
+                        <div class="control-group__tabs">
+                            <button type="button" class="control-group__tab control-group__tab--active" id="tabManual" onclick="switchGuestInputMode('manual')">
+                                 Nhập tay
+                            </button>
+                            <button type="button" class="control-group__tab" id="tabExcel" onclick="switchGuestInputMode('excel')">
+                                Nhập File Excel
+                            </button>
+                        </div>
+                        <!-- Manual Input Mode -->
+                        <div id="guestInputManual" class="guest-input-mode">
+                            <textarea id="guestListManual" class="control-group__textarea" rows="5" placeholder="Nhập mỗi tên một dòng...
+Ví dụ:
+Nguyễn Văn A
+Trần Thị B
+Lê Văn C"></textarea>
+                            <button type="button" class="control-group__button" onclick="parseManualGuestList()" style="margin-top: var(--spacing-xs);">
+                                 Áp dụng danh sách
+                            </button>
+                        </div>
+                        <!-- Excel Upload Mode -->
+                        <div id="guestInputExcel" class="guest-input-mode" style="display: none;">
+                            <div class="upload-btn" id="guestListUploadBtn" onclick="document.getElementById('guestListUpload').click()" style="width: 100%;">
+                                <span class="upload-btn__icon"></span>
+                                <span class="upload-btn__text">Chọn file Excel/CSV</span>
+                            </div>
+                            <input type="file" id="guestListUpload" class="input-panel__file" accept=".xlsx,.csv">
+                        </div>
+                        <div class="control-group__status" id="guestListStatus">Chưa có danh sách</div>
+                    </div>
+
+                    <!-- Text Input -->
+                    <div class="control-group">
+                        <div class="control-group__title">Nội dung</div>
+                        <input type="text" id="addText_previewName" class="control-group__text-input" value="Text ở đây" placeholder="Nhập text xem trước...">
+                    </div>
+
+                    <!-- Position Controls -->
+                    <div class="control-group">
+                        <div class="control-group__title">Vị trí</div>
+                        <div class="control-group__row">
+                            <div class="control-group__item">
+                                <label class="control-group__label">X</label>
+                                <input type="number" id="addText_positionX" class="control-group__input" value="100" min="0">
+                                <input type="range" id="addText_positionX_slider" class="control-group__slider" value="100" min="0" max="1000">
+                            </div>
+                            <div class="control-group__item">
+                                <label class="control-group__label">Y</label>
+                                <input type="number" id="addText_positionY" class="control-group__input" value="100" min="0">
+                                <input type="range" id="addText_positionY_slider" class="control-group__slider" value="100" min="0" max="1000">
+                            </div>
+                        </div>
+                        <div class="control-group__status" id="positionInfo">X=100, Y=100</div>
+                        <span id="positionX_max" style="display:none;">/ 1000</span>
+                        <span id="positionY_max" style="display:none;">/ 1000</span>
+                    </div>
+
+                    <!-- Size & Rotation -->
+                    <div class="control-group">
+                        <div class="control-group__title">📐 Kích thước & Xoay</div>
+                        <div class="control-group__row">
+                            <div class="control-group__item">
+                                <label class="control-group__label">Cỡ chữ (px)</label>
+                                <input type="number" id="addText_fontSize" class="control-group__input" value="200" min="10" max="500">
+                                <input type="range" id="addText_fontSize_slider" class="control-group__slider" value="200" min="10" max="500">
+                            </div>
+                            <div class="control-group__item">
+                                <label class="control-group__label">Xoay (°)</label>
+                                <input type="number" id="addText_rotation" class="control-group__input" value="0" min="-180" max="180">
+                                <input type="range" id="addText_rotation_slider" class="control-group__slider" value="0" min="-180" max="180">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Style Controls -->
+                    <div class="control-group">
+                        <div class="control-group__title">Kiểu chữ</div>
+                        <div class="control-group__color-row">
+                            <input type="color" id="addText_color" class="control-group__color-picker" value="#FFD700">
+                            <input type="text" id="addText_colorHex" class="control-group__input" value="#FFD700" style="flex:1;">
+                        </div>
+                        <div class="control-group__row" style="margin-top: var(--spacing-xs);">
+                            <select id="addText_align" class="control-group__select">
+                                <option value="left">⬅ Trái</option>
+                                <option value="center">⬆ Giữa</option>
+                                <option value="right"> Phải</option>
+                            </select>
+                            <select id="addText_fontWeight" class="control-group__select">
+                                <option value="normal">Thường</option>
+                                <option value="bold">Đậm</option>
+                                <option value="lighter">Nhạt</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Font Selection -->
+                    <div class="control-group">
+                        <div class="control-group__title"> Font chữ</div>
+                        <select id="addText_fontFamily" class="control-group__select" style="width:100%;">
+                            <optgroup label=" Font phổ biến">
+                                <option value="Arial" selected>Arial</option>
+                                <option value="Times New Roman">Times New Roman</option>
+                                <option value="Georgia">Georgia</option>
+                                <option value="Verdana">Verdana</option>
+                            </optgroup>
+                            <optgroup label="Font trang trí">
+                                <option value="Impact">Impact</option>
+                                <option value="Comic Sans MS">Comic Sans MS</option>
+                                <option value="Brush Script MT">Brush Script MT</option>
+                            </optgroup>
+                            <optgroup label="Font hệ thống" id="systemFontsGroup"></optgroup>
+                            <optgroup label=" Font tùy chỉnh" id="customFontsGroup"></optgroup>
+                        </select>
+                        <div class="control-group__status" id="fontPreview" style="font-size: 1rem;">Aa Bb Cc 123 Việt Nam</div>
+                        <input type="file" id="fontUpload" class="input-panel__file" accept=".ttf,.otf,.woff,.woff2">
+                        <button type="button" class="control-group__button" onclick="document.getElementById('fontUpload').click()" style="background: var(--color-background); color: var(--color-text); border: 1px dashed var(--color-border);">
+                            ➕ Thêm font
+                        </button>
+                    </div>
+
+                    <!-- Export Controls -->
+                    <div class="control-group">
+                        <div class="control-group__title"> Xuất file</div>
+                        <div class="control-group__row">
+                            <select id="addText_outputFormat" class="control-group__select">
+                                <option value="png">PNG</option>
+                                <option value="jpeg">JPEG</option>
+                            </select>
+                            <div class="control-group__item">
+                                <input type="range" id="addText_quality" class="control-group__slider" min="0.5" max="1" step="0.1" value="0.95">
+                                <span class="control-group__label" id="qualityValue">95%</span>
+                            </div>
+                        </div>
+                        <button type="button" class="control-group__button control-group__button--success" id="generateAll" style="margin-top: var(--spacing-xs);">
+                            Tạo và tải xuống
+                        </button>
+                        <div class="output-panel__progress" id="progressBar" style="display:none; margin-top: var(--spacing-xs);">
+                            <div class="output-panel__progress-bar" id="progressBarFill"></div>
+                            <span class="output-panel__progress-text" id="progressText">0/0</span>
+                        </div>
+                    </div>
+
+                    <!-- Preview Gallery Buttons -->
+                    <div class="control-group">
+                        <div class="control-group__title">Xem trước</div>
+                        <button type="button" class="control-group__button" id="updatePreview">
+                            Cập Nhật Xem Trước
+                        </button>
+                        <button type="button" class="control-group__button" id="generatePreviewGallery" style="background: linear-gradient(135deg, #14B8A6 0%, #0D9488 100%); box-shadow: var(--shadow-md), 0 0 20px rgba(20, 184, 166, 0.2); margin-top: var(--spacing-xs);">
+                             Xem Mẫu Từ Danh Sách
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Preview Gallery (collapsible) -->
+            <div class="preview-gallery" id="previewGallery" style="display: none; margin-top: var(--spacing-md);">
+                <h3 class="preview-gallery__title">
+                    Mẫu Thiệp Demo
+                    <span class="preview-gallery__count" id="galleryCount">(0/0)</span>
+                </h3>
+                <div class="preview-gallery__grid" id="galleryGrid"></div>
+                <button type="button" class="preview-gallery__more-btn" id="loadMoreBtn" style="display: none;">
+                    Xem Thêm Mẫu
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <footer class="invitation-generator__footer">
+        <p class="invitation-generator__copyright">© 2026 Đoàn Thuật</p>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script>
+        // ================================
+// Global State Management
+// ================================
+const AppState = {
+    templateImage: null,
+    guestList: [],
+    customFonts: [], // Array of custom uploaded fonts
+    canvas: null,
+    ctx: null,
+    config: {
+        positionX: 100,
+        positionY: 100,
+        fontSize: 40,
+        rotation: 0,
+        color: '#FFD700',
+        align: 'left',
+        fontWeight: 'normal',
+        fontFamily: 'Arial'
+    },
+    // Drag state (always enabled)
+    drag: {
+        isDragging: false,
+        justFinishedDrag: false,
+        rafPending: false,
+        startX: 0,
+        startY: 0,
+        offsetX: 0,
+        offsetY: 0
+    },
+    // Resize state
+    resize: {
+        isResizing: false,
+        handleIndex: -1, // 0-3 for corners, 4 for rotation handle
+        rafPending: false,
+        startX: 0,
+        startY: 0,
+        startFontSize: 0,
+        startRotation: 0,
+        startCenterX: 0,
+        startCenterY: 0,
+        initialDistance: 0
+    },
+    // Preview gallery state
+    gallery: {
+        currentCount: 0,
+        batchSize: 4,
+        images: []
+    },
+    // Text bounds for hit detection
+    textBounds: {
+        x: 0,
+        y: 0,
+        width: 0,
+        height: 0
+    },
+    // Rotated corners for drawing handles
+    rotatedCorners: [],
+    // Zoom state for display only (not affecting export)
+    zoom: {
+        level: 1, // 1 = 100%
+        min: 0.1,
+        max: 3,
+        step: 0.1
+    }
+};
+
+// Common system fonts that are likely available
+const SYSTEM_FONTS = [
+    'Segoe UI', 'Roboto', 'Helvetica Neue', 'Helvetica', 'Ubuntu',
+    'Cantarell', 'Noto Sans', 'Open Sans', 'Lato', 'Montserrat',
+    'Source Sans Pro', 'Raleway', 'PT Sans', 'Oswald', 'Merriweather',
+    'Playfair Display', 'Nunito', 'Poppins', 'Dancing Script', 'Pacifico',
+    'Great Vibes', 'Lobster', 'Abril Fatface', 'Cinzel', 'Cormorant Garamond'
+];
+
+// ================================
+// DOM Elements
+// ================================
+const DOM = {
+    templateUpload: document.getElementById('templateUpload'),
+    guestListUpload: document.getElementById('guestListUpload'),
+    fontUpload: document.getElementById('fontUpload'),
+    previewCanvas: document.getElementById('previewCanvas'),
+    canvasWrapper: document.getElementById('canvasWrapper'),
+    statusText: document.getElementById('statusText'),
+    positionInfo: document.getElementById('positionInfo'),
+    previewName: document.getElementById('addText_previewName'),
+    updatePreview: document.getElementById('updatePreview'),
+    generateAll: document.getElementById('generateAll'),
+    dragHint: document.getElementById('dragHint'),
+    progressBar: document.getElementById('progressBar'),
+    progressBarFill: document.getElementById('progressBarFill'),
+    progressText: document.getElementById('progressText'),
+    qualityValue: document.getElementById('qualityValue'),
+    
+    // Gallery elements
+    generatePreviewGallery: document.getElementById('generatePreviewGallery'),
+    previewGallery: document.getElementById('previewGallery'),
+    galleryGrid: document.getElementById('galleryGrid'),
+    galleryCount: document.getElementById('galleryCount'),
+    loadMoreBtn: document.getElementById('loadMoreBtn'),
+    
+    // Config inputs with addText_ prefix
+    addText_positionX: document.getElementById('addText_positionX'),
+    addText_positionY: document.getElementById('addText_positionY'),
+    addText_positionX_slider: document.getElementById('addText_positionX_slider'),
+    addText_positionY_slider: document.getElementById('addText_positionY_slider'),
+    positionX_max: document.getElementById('positionX_max'),
+    positionY_max: document.getElementById('positionY_max'),
+    addText_fontSize: document.getElementById('addText_fontSize'),
+    addText_fontSize_slider: document.getElementById('addText_fontSize_slider'),
+    addText_rotation: document.getElementById('addText_rotation'),
+    addText_rotation_slider: document.getElementById('addText_rotation_slider'),
+    addText_color: document.getElementById('addText_color'),
+    addText_colorHex: document.getElementById('addText_colorHex'),
+    addText_align: document.getElementById('addText_align'),
+    addText_fontWeight: document.getElementById('addText_fontWeight'),
+    addText_fontFamily: document.getElementById('addText_fontFamily'),
+    fontPreview: document.getElementById('fontPreview'),
+    systemFontsGroup: document.getElementById('systemFontsGroup'),
+    customFontsGroup: document.getElementById('customFontsGroup'),
+    addText_outputFormat: document.getElementById('addText_outputFormat'),
+    addText_quality: document.getElementById('addText_quality')
+};
+
+// ================================
+// Initialization
+// ================================
+function init() {
+    AppState.canvas = DOM.previewCanvas;
+    AppState.ctx = AppState.canvas.getContext('2d');
+    
+    setupEventListeners();
+    detectSystemFonts();
+    updateFontPreview();
+    updatePositionInfo();
+    updateStatusText('Sẵn sàng! Vui lòng tải ảnh template');
+}
+
+// ================================
+// Event Listeners Setup
+// ================================
+function setupEventListeners() {
+    // File uploads
+    DOM.templateUpload.addEventListener('change', handleTemplateUpload);
+    DOM.guestListUpload.addEventListener('change', handleGuestListUpload);
+    DOM.fontUpload.addEventListener('change', handleFontUpload);
+    
+    // Config changes - Number inputs
+    DOM.addText_positionX.addEventListener('input', handlePositionXInput);
+    DOM.addText_positionY.addEventListener('input', handlePositionYInput);
+    
+    // Config changes - Range sliders
+    DOM.addText_positionX_slider.addEventListener('input', handlePositionXSlider);
+    DOM.addText_positionY_slider.addEventListener('input', handlePositionYSlider);
+    
+    // Font size inputs
+    DOM.addText_fontSize.addEventListener('input', handleFontSizeInput);
+    DOM.addText_fontSize_slider.addEventListener('input', handleFontSizeSlider);
+    
+    // Rotation inputs
+    DOM.addText_rotation.addEventListener('input', handleRotationInput);
+    DOM.addText_rotation_slider.addEventListener('input', handleRotationSlider);
+    
+    DOM.addText_color.addEventListener('input', syncColorInputs);
+    DOM.addText_colorHex.addEventListener('input', syncColorInputsReverse);
+    DOM.addText_align.addEventListener('change', updateConfigFromInputs);
+    DOM.addText_fontWeight.addEventListener('change', updateConfigFromInputs);
+    
+    // Font family change
+    DOM.addText_fontFamily.addEventListener('change', handleFontFamilyChange);
+    
+    // Quality slider
+    DOM.addText_quality.addEventListener('input', (e) => {
+        DOM.qualityValue.textContent = `${Math.round(e.target.value * 100)}%`;
+    });
+    
+    // Preview and generation
+    DOM.previewName.addEventListener('input', debounce(updatePreview, 300));
+    DOM.updatePreview.addEventListener('click', updatePreview);
+    DOM.generateAll.addEventListener('click', generateAllInvitations);
+    
+    // Gallery events
+    DOM.generatePreviewGallery.addEventListener('click', generatePreviewGallery);
+    DOM.loadMoreBtn.addEventListener('click', loadMorePreviews);
+    
+    // Canvas events for click and drag
+    AppState.canvas.addEventListener('click', handleCanvasClick);
+    AppState.canvas.addEventListener('mousedown', handleMouseDown);
+    AppState.canvas.addEventListener('mousemove', handleMouseMove);
+    AppState.canvas.addEventListener('mouseup', handleMouseUp);
+    AppState.canvas.addEventListener('mouseleave', handleMouseUp);
+    
+    // Touch events for mobile
+    AppState.canvas.addEventListener('touchstart', handleTouchStart, { passive: false });
+    AppState.canvas.addEventListener('touchmove', handleTouchMove, { passive: false });
+    AppState.canvas.addEventListener('touchend', handleTouchEnd);
+    
+    // Scroll wheel for font size zoom
+    AppState.canvas.addEventListener('wheel', handleWheelZoom, { passive: false });
+    
+    // Zoom controls
+    document.getElementById('zoomIn').addEventListener('click', () => zoomCanvas(AppState.zoom.step));
+    document.getElementById('zoomOut').addEventListener('click', () => zoomCanvas(-AppState.zoom.step));
+    document.getElementById('zoomReset').addEventListener('click', () => setZoom(1));
+    document.getElementById('zoomFit').addEventListener('click', zoomToFit);
+}
+
+// ================================
+// Zoom Functions
+// ================================
+function zoomCanvas(delta) {
+    const newZoom = Math.max(AppState.zoom.min, Math.min(AppState.zoom.max, AppState.zoom.level + delta));
+    setZoom(newZoom);
+}
+
+function setZoom(level) {
+    AppState.zoom.level = level;
+    applyZoom();
+    updateZoomDisplay();
+}
+
+function applyZoom() {
+    if (AppState.canvas) {
+        AppState.canvas.style.transform = `scale(${AppState.zoom.level})`;
+        AppState.canvas.style.transformOrigin = 'center center';
+    }
+}
+
+function updateZoomDisplay() {
+    const zoomValue = document.getElementById('zoomValue');
+    if (zoomValue) {
+        zoomValue.textContent = `${Math.round(AppState.zoom.level * 100)}%`;
+    }
+}
+
+function zoomToFit() {
+    if (!AppState.templateImage) return;
+    
+    const container = document.getElementById('canvasScrollContainer');
+    if (!container) return;
+    
+    const containerWidth = container.clientWidth - 40; // padding
+    const containerHeight = container.clientHeight - 40;
+    
+    const imageWidth = AppState.templateImage.width;
+    const imageHeight = AppState.templateImage.height;
+    
+    const scaleX = containerWidth / imageWidth;
+    const scaleY = containerHeight / imageHeight;
+    
+    const fitZoom = Math.min(scaleX, scaleY, 1); // Don't zoom larger than 100%
+    setZoom(fitZoom);
+}
+
+// ================================
+// Template Upload Handler
+// ================================
+function handleTemplateUpload(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+    
+    if (!file.type.match('image/(jpeg|png)')) {
+        alert('Vui lòng chọn file JPG hoặc PNG');
+        return;
+    }
+    
+    const reader = new FileReader();
+    reader.onload = (event) => {
+        const img = new Image();
+        img.onload = () => {
+            AppState.templateImage = img;
+            setupCanvas(img);
+            updateStatusText('✅ Template: ' + file.name);
+            updatePreview();
+            // Mark upload button as active
+            const btn = document.getElementById('templateUploadBtn');
+            if (btn) btn.classList.add('upload-btn--active');
+            // Auto zoom to fit after loading
+            setTimeout(() => zoomToFit(), 100);
+        };
+        img.onerror = () => {
+            alert('Không thể đọc file ảnh!');
+        };
+        img.src = event.target.result;
+    };
+    reader.onerror = () => {
+        alert('Không thể đọc file!');
+    };
+    reader.readAsDataURL(file);
+}
+
+// ================================
+// Guest List Upload Handler
+// ================================
+function handleGuestListUpload(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+    
+    const statusEl = document.getElementById('guestListStatus');
+    statusEl.textContent = '⏳ Đang đọc danh sách...';
+    statusEl.style.color = '';
+    
+    const reader = new FileReader();
+    reader.onload = (event) => {
+        try {
+            if (file.name.endsWith('.csv')) {
+                parseCSV(event.target.result);
+            } else {
+                parseExcel(event.target.result);
+            }
+            
+            if (AppState.guestList.length === 0) {
+                alert('Không tìm thấy dữ liệu khách mời trong file!');
+                statusEl.textContent = '❌ File không có dữ liệu';
+                statusEl.style.color = 'var(--color-error)';
+            } else {
+                statusEl.textContent = `✅ ${AppState.guestList.length} khách mời`;
+                statusEl.style.color = 'var(--color-success)';
+                // Mark upload button as active
+                const btn = document.getElementById('guestListUploadBtn');
+                if (btn) btn.classList.add('upload-btn--active');
+            }
+        } catch (error) {
+            console.error('Error parsing file:', error);
+            alert('Lỗi đọc file: ' + error.message);
+            statusEl.textContent = '❌ Lỗi đọc file';
+            statusEl.style.color = 'var(--color-error)';
+        }
+    };
+    reader.onerror = () => {
+        alert('Không thể đọc file!');
+        statusEl.textContent = '❌ Không thể đọc file';
+        statusEl.style.color = 'var(--color-error)';
+    };
+    
+    if (file.name.endsWith('.csv')) {
+        reader.readAsText(file, 'UTF-8');
+    } else {
+        reader.readAsBinaryString(file);
+    }
+}
+
+// ================================
+// Switch Guest Input Mode (Manual / Excel)
+// ================================
+function switchGuestInputMode(mode) {
+    const tabManual = document.getElementById('tabManual');
+    const tabExcel = document.getElementById('tabExcel');
+    const inputManual = document.getElementById('guestInputManual');
+    const inputExcel = document.getElementById('guestInputExcel');
+    
+    if (mode === 'manual') {
+        tabManual.classList.add('control-group__tab--active');
+        tabExcel.classList.remove('control-group__tab--active');
+        inputManual.style.display = 'block';
+        inputExcel.style.display = 'none';
+    } else {
+        tabManual.classList.remove('control-group__tab--active');
+        tabExcel.classList.add('control-group__tab--active');
+        inputManual.style.display = 'none';
+        inputExcel.style.display = 'block';
+    }
+}
+
+// ================================
+// Parse Manual Guest List (each line = one name)
+// ================================
+function parseManualGuestList() {
+    const textarea = document.getElementById('guestListManual');
+    const text = textarea.value.trim();
+    
+    if (!text) {
+        alert('Vui lòng nhập danh sách tên!');
+        return;
+    }
+    
+    const lines = text.split('\n').filter(line => line.trim());
+    AppState.guestList = [];
+    
+    for (const line of lines) {
+        const name = line.trim();
+        if (name) {
+            AppState.guestList.push({
+                name: name,
+                title: ''
+            });
+        }
+    }
+    
+    const statusEl = document.getElementById('guestListStatus');
+    if (AppState.guestList.length === 0) {
+        statusEl.textContent = '❌ Không có tên nào';
+    } else {
+        statusEl.textContent = `✅ ${AppState.guestList.length} khách mời`;
+        statusEl.style.color = 'var(--color-success)';
+    }
+}
+
+// ================================
+// CSV Parser
+// ================================
+function parseCSV(csvText) {
+    const lines = csvText.split('\n').filter(line => line.trim());
+    AppState.guestList = [];
+    
+    for (let i = 1; i < lines.length; i++) {
+        const line = lines[i].trim();
+        if (!line) continue;
+        
+        // Handle quoted values with commas
+        const values = parseCSVLine(line);
+        if (values.length > 0 && values[0]) {
+            AppState.guestList.push({
+                name: values[0].trim(),
+                title: (values[1] || '').trim()
+            });
+        }
+    }
+}
+
+// Parse a single CSV line handling quotes
+function parseCSVLine(line) {
+    const result = [];
+    let current = '';
+    let inQuotes = false;
+    
+    for (let i = 0; i < line.length; i++) {
+        const char = line[i];
+        
+        if (char === '"') {
+            inQuotes = !inQuotes;
+        } else if (char === ',' && !inQuotes) {
+            result.push(current);
+            current = '';
+        } else {
+            current += char;
+        }
+    }
+    result.push(current);
+    
+    return result;
+}
+
+// ================================
+// Excel Parser
+// ================================
+function parseExcel(binaryStr) {
+    const workbook = XLSX.read(binaryStr, { type: 'binary' });
+    const firstSheet = workbook.Sheets[workbook.SheetNames[0]];
+    const data = XLSX.utils.sheet_to_json(firstSheet, { header: 1, defval: '', blankrows: true });
+    
+    console.log('Total rows in Excel:', data.length);
+    console.log('First row (check if header):', data[0]);
+    
+    AppState.guestList = [];
+    let skippedRows = [];
+    
+    // Kiểm tra xem hàng đầu tiên có phải là header không
+    // Nếu hàng đầu chứa từ như "tên", "name", "stt", "họ tên" thì coi là header
+    const firstRow = data[0] || [];
+    const headerKeywords = ['tên', 'ten', 'name', 'họ tên', 'ho ten', 'stt', 'số thứ tự', 'danh sách', 'khách'];
+    const firstCellValue = String(firstRow[0] || '').toLowerCase().trim();
+    const isHeader = headerKeywords.some(keyword => firstCellValue.includes(keyword)) || 
+                     firstCellValue === '' ||
+                     /^[a-z\s]+$/i.test(firstCellValue) && firstCellValue.length < 15;
+    
+    const startIndex = isHeader ? 1 : 0;
+    console.log('Is first row header?', isHeader, '- Starting from row:', startIndex + 1);
+    
+    for (let i = startIndex; i < data.length; i++) {
+        const row = data[i];
+        if (!row || row.length === 0) {
+            skippedRows.push(i + 1);
+            continue;
+        }
+        
+        // Tìm tên trong các cột (có thể ở cột A, B, hoặc C)
+        let name = '';
+        let title = '';
+        
+        // Kiểm tra các cột để tìm tên
+        for (let j = 0; j < Math.min(row.length, 5); j++) {
+            const cellValue = String(row[j] || '').trim();
+            // Bỏ qua nếu là số thứ tự (chỉ chứa số)
+            if (cellValue && !name && !/^\d+$/.test(cellValue)) {
+                name = cellValue;
+            } else if (cellValue && name && !title && !/^\d+$/.test(cellValue)) {
+                title = cellValue;
+                break;
+            }
+        }
+        
+        if (name) {
+            AppState.guestList.push({ name, title });
+        } else {
+            skippedRows.push(i + 1);
+        }
+    }
+    
+    console.log('Valid names loaded:', AppState.guestList.length);
+    console.log('Guest list:', AppState.guestList.map((g, i) => `${i+1}. ${g.name}`).join(', '));
+    if (skippedRows.length > 0) {
+        console.log('Skipped rows:', skippedRows);
+    }
+}
+
+// ================================
+// Font Upload Handler
+// ================================
+function handleFontUpload(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+    
+    const fontName = file.name.replace(/\.[^/.]+$/, "").replace(/[^a-zA-Z0-9]/g, '_');
+    
+    const reader = new FileReader();
+    reader.onload = (event) => {
+        const fontData = event.target.result;
+        const fontFace = new FontFace(fontName, fontData);
+        fontFace.load().then((loadedFont) => {
+            document.fonts.add(loadedFont);
+            
+            // Add to custom fonts list
+            AppState.customFonts.push({
+                name: fontName,
+                displayName: file.name,
+                font: loadedFont
+            });
+            
+            // Add option to dropdown
+            const option = document.createElement('option');
+            option.value = fontName;
+            option.textContent = `📤 ${file.name}`;
+            DOM.customFontsGroup.appendChild(option);
+            
+            // Select the newly added font
+            DOM.addText_fontFamily.value = fontName;
+            AppState.config.fontFamily = fontName;
+            
+            updateFontPreview();
+            updateStatusText('✅ Đã thêm font: ' + file.name);
+            updatePreview();
+        }).catch((error) => {
+            console.error('Font load error:', error);
+            alert('Lỗi tải font: ' + error.message);
+        });
+    };
+    reader.onerror = () => {
+        alert('Không thể đọc file font!');
+    };
+    reader.readAsArrayBuffer(file);
+}
+
+// ================================
+// System Font Detection
+// ================================
+function detectSystemFonts() {
+    const testString = 'mmmmmmmmmmlli';
+    const testSize = '72px';
+    const baseFonts = ['monospace', 'sans-serif', 'serif'];
+    
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+    
+    // Get base widths
+    const baseWidths = {};
+    baseFonts.forEach(baseFont => {
+        ctx.font = `${testSize} ${baseFont}`;
+        baseWidths[baseFont] = ctx.measureText(testString).width;
+    });
+    
+    // Check each system font
+    const availableFonts = [];
+    SYSTEM_FONTS.forEach(font => {
+        let detected = false;
+        for (const baseFont of baseFonts) {
+            ctx.font = `${testSize} '${font}', ${baseFont}`;
+            const width = ctx.measureText(testString).width;
+            if (width !== baseWidths[baseFont]) {
+                detected = true;
+                break;
+            }
+        }
+        if (detected) {
+            availableFonts.push(font);
+        }
+    });
+    
+    // Add detected fonts to dropdown
+    availableFonts.forEach(font => {
+        const option = document.createElement('option');
+        option.value = font;
+        option.textContent = font;
+        DOM.systemFontsGroup.appendChild(option);
+    });
+    
+    console.log(`Detected ${availableFonts.length} system fonts`);
+}
+
+// ================================
+// Font Family Change Handler
+// ================================
+function handleFontFamilyChange(e) {
+    AppState.config.fontFamily = e.target.value;
+    updateFontPreview();
+    updatePreview();
+}
+
+// ================================
+// Update Font Preview
+// ================================
+function updateFontPreview() {
+    const font = AppState.config.fontFamily;
+    DOM.fontPreview.style.fontFamily = `'${font}', sans-serif`;
+    DOM.fontPreview.textContent = `${font}: Aa Bb Cc 123 Việt Nam`;
+}
+
+// ================================
+// Canvas Setup
+// ================================
+function setupCanvas(img) {
+    const maxWidth = DOM.canvasWrapper.clientWidth - 32;
+    const scale = Math.min(1, maxWidth / img.width);
+    
+    AppState.canvas.width = img.width;
+    AppState.canvas.height = img.height;
+    AppState.canvas.style.width = `${img.width * scale}px`;
+    AppState.canvas.style.height = `${img.height * scale}px`;
+    
+    // Update slider max values based on image size
+    updatePositionSliderMaxValues(img.width, img.height);
+}
+
+// ================================
+// Draw Image with Text
+// ================================
+function drawImageWithText(name, drawBounds = true) {
+    if (!AppState.templateImage) return;
+    
+    const ctx = AppState.ctx;
+    const cfg = AppState.config;
+    
+    // Clear and draw template
+    ctx.clearRect(0, 0, AppState.canvas.width, AppState.canvas.height);
+    ctx.drawImage(AppState.templateImage, 0, 0);
+    
+    // Configure text
+    ctx.font = `${cfg.fontWeight} ${cfg.fontSize}px '${cfg.fontFamily}', sans-serif`;
+    ctx.fillStyle = cfg.color;
+    ctx.textBaseline = 'middle';
+    
+    // Draw text with shadow for better visibility
+    ctx.shadowColor = 'rgba(0, 0, 0, 0.3)';
+    ctx.shadowBlur = 4;
+    ctx.shadowOffsetX = 2;
+    ctx.shadowOffsetY = 2;
+    
+    // Calculate text metrics for bounds
+    const metrics = ctx.measureText(name);
+    const textWidth = metrics.width;
+    const textHeight = cfg.fontSize;
+    
+    // Calculate text position and rotation
+    const centerX = cfg.positionX;
+    const centerY = cfg.positionY + textHeight / 2; // Adjust for middle baseline
+    const rotationRad = (cfg.rotation * Math.PI) / 180;
+    
+    // Save context state
+    ctx.save();
+    
+    // Translate to text position and rotate
+    ctx.translate(centerX, centerY);
+    ctx.rotate(rotationRad);
+    
+    // Set text alignment for drawing at origin
+    ctx.textAlign = cfg.align;
+    
+    // Determine X offset based on alignment
+    let drawX = 0;
+    if (cfg.align === 'center') {
+        drawX = 0;
+    } else if (cfg.align === 'right') {
+        drawX = 0;
+    } else {
+        drawX = 0;
+    }
+    
+    // Draw text at origin (after translation)
+    ctx.fillText(name, drawX, 0);
+    
+    // Reset shadow before drawing bounds
+    ctx.shadowColor = 'transparent';
+    
+    // Restore context state
+    ctx.restore();
+    
+    // Calculate rotated bounding box for hit detection
+    let minX, maxX;
+    if (cfg.align === 'center') {
+        minX = -textWidth / 2;
+        maxX = textWidth / 2;
+    } else if (cfg.align === 'right') {
+        minX = -textWidth;
+        maxX = 0;
+    } else {
+        minX = 0;
+        maxX = textWidth;
+    }
+    
+    // Calculate corners of text bounding box (with some padding)
+    const padding = 10;
+    const corners = [
+        { x: minX - padding, y: -textHeight / 2 - padding },  // Top-left
+        { x: maxX + padding, y: -textHeight / 2 - padding },  // Top-right
+        { x: maxX + padding, y: textHeight / 2 + padding },   // Bottom-right
+        { x: minX - padding, y: textHeight / 2 + padding }    // Bottom-left
+    ];
+    
+    // Rotate corners and translate to world coordinates
+    const rotatedCorners = corners.map(corner => {
+        const cos = Math.cos(rotationRad);
+        const sin = Math.sin(rotationRad);
+        return {
+            x: centerX + corner.x * cos - corner.y * sin,
+            y: centerY + corner.x * sin + corner.y * cos
+        };
+    });
+    
+    // Store rotated corners for handle detection
+    AppState.rotatedCorners = rotatedCorners;
+    AppState.textCenter = { x: centerX, y: centerY };
+    
+    // Find bounding box of rotated text
+    const boundsMinX = Math.min(...rotatedCorners.map(c => c.x));
+    const boundsMaxX = Math.max(...rotatedCorners.map(c => c.x));
+    const boundsMinY = Math.min(...rotatedCorners.map(c => c.y));
+    const boundsMaxY = Math.max(...rotatedCorners.map(c => c.y));
+    
+    // Store text bounds for drag detection (axis-aligned bounding box)
+    AppState.textBounds = {
+        x: boundsMinX - 10,
+        y: boundsMinY - 5,
+        width: boundsMaxX - boundsMinX + 20,
+        height: boundsMaxY - boundsMinY + 10
+    };
+    
+    // Draw bounds and handles (always active when not dragging/resizing)
+    if (drawBounds && !AppState.drag.isDragging && !AppState.resize.isResizing) {
+        ctx.strokeStyle = 'rgba(79, 70, 229, 0.8)';
+        ctx.lineWidth = 2;
+        ctx.setLineDash([5, 5]);
+        
+        // Draw rotated rectangle outline
+        ctx.beginPath();
+        ctx.moveTo(rotatedCorners[0].x, rotatedCorners[0].y);
+        for (let i = 1; i < rotatedCorners.length; i++) {
+            ctx.lineTo(rotatedCorners[i].x, rotatedCorners[i].y);
+        }
+        ctx.closePath();
+        ctx.stroke();
+        ctx.setLineDash([]);
+        
+        // Draw resize handles at corners
+        const handleSize = 10;
+        ctx.fillStyle = 'white';
+        ctx.strokeStyle = 'rgba(79, 70, 229, 1)';
+        ctx.lineWidth = 2;
+        
+        rotatedCorners.forEach((corner, index) => {
+            ctx.beginPath();
+            ctx.rect(corner.x - handleSize/2, corner.y - handleSize/2, handleSize, handleSize);
+            ctx.fill();
+            ctx.stroke();
+        });
+        
+        // Draw rotation handle (circle above the text)
+        const rotationHandleDistance = 30;
+        const topMidX = (rotatedCorners[0].x + rotatedCorners[1].x) / 2;
+        const topMidY = (rotatedCorners[0].y + rotatedCorners[1].y) / 2;
+        
+        // Calculate rotation handle position (perpendicular to top edge, going outward)
+        const topEdgeDx = rotatedCorners[1].x - rotatedCorners[0].x;
+        const topEdgeDy = rotatedCorners[1].y - rotatedCorners[0].y;
+        const topEdgeLength = Math.sqrt(topEdgeDx * topEdgeDx + topEdgeDy * topEdgeDy);
+        const perpX = -topEdgeDy / topEdgeLength;
+        const perpY = topEdgeDx / topEdgeLength;
+        
+        const rotationHandle = {
+            x: topMidX + perpX * rotationHandleDistance,
+            y: topMidY + perpY * rotationHandleDistance
+        };
+        AppState.rotationHandle = rotationHandle;
+        
+        // Draw line from top edge to rotation handle
+        ctx.strokeStyle = 'rgba(79, 70, 229, 0.6)';
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(topMidX, topMidY);
+        ctx.lineTo(rotationHandle.x, rotationHandle.y);
+        ctx.stroke();
+        
+        // Draw rotation handle (circle)
+        ctx.fillStyle = 'white';
+        ctx.strokeStyle = 'rgba(79, 70, 229, 1)';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.arc(rotationHandle.x, rotationHandle.y, 8, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.stroke();
+        
+        // Draw rotation icon inside
+        ctx.fillStyle = 'rgba(79, 70, 229, 1)';
+        ctx.font = '10px Arial';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText('↻', rotationHandle.x, rotationHandle.y);
+    }
+}
+
+// ================================
+// Update Preview
+// ================================
+function updatePreview() {
+    const name = DOM.previewName.value || 'Text ở đây';
+    drawImageWithText(name);
+    updatePositionInfo();
+}
+
+// ================================
+// Preview Gallery Functions
+// ================================
+async function generatePreviewGallery() {
+    if (!AppState.templateImage) {
+        alert('Vui lòng tải ảnh template trước!');
+        return;
+    }
+    
+    if (AppState.guestList.length === 0) {
+        alert('Vui lòng tải danh sách khách mời!');
+        return;
+    }
+    
+    // Reset gallery
+    AppState.gallery.currentCount = 0;
+    AppState.gallery.images = [];
+    DOM.galleryGrid.innerHTML = '';
+    DOM.previewGallery.style.display = 'block';
+    
+    // Generate first batch
+    await loadMorePreviews();
+}
+
+async function loadMorePreviews() {
+    const startIndex = AppState.gallery.currentCount;
+    const endIndex = Math.min(startIndex + AppState.gallery.batchSize, AppState.guestList.length);
+    
+    if (startIndex >= AppState.guestList.length) {
+        return;
+    }
+    
+    DOM.loadMoreBtn.disabled = true;
+    DOM.loadMoreBtn.textContent = '⏳ Đang tạo...';
+    
+    // Create temporary canvas for generating previews
+    const tempCanvas = document.createElement('canvas');
+    tempCanvas.width = AppState.canvas.width;
+    tempCanvas.height = AppState.canvas.height;
+    const tempCtx = tempCanvas.getContext('2d');
+    
+    for (let i = startIndex; i < endIndex; i++) {
+        const guest = AppState.guestList[i];
+        const fullName = guest.title ? `${guest.title} ${guest.name}` : guest.name;
+        
+        // Draw on temp canvas
+        drawImageWithTextOnCanvas(tempCtx, tempCanvas, fullName);
+        
+        // Create image from canvas
+        const imageUrl = tempCanvas.toDataURL('image/jpeg', 0.7);
+        
+        // Create gallery item
+        const item = document.createElement('div');
+        item.className = 'preview-gallery__item';
+        item.innerHTML = `
+            <img src="${imageUrl}" alt="${guest.name}">
+            <div class="preview-gallery__item-name">${guest.name}</div>
+        `;
+        
+        // Click to preview this name
+        item.addEventListener('click', () => {
+            DOM.previewName.value = fullName;
+            updatePreview();
+            // Scroll to preview
+            DOM.canvasWrapper.scrollIntoView({ behavior: 'smooth' });
+        });
+        
+        DOM.galleryGrid.appendChild(item);
+        AppState.gallery.images.push(imageUrl);
+        
+        // Small delay for UI responsiveness
+        await new Promise(r => setTimeout(r, 50));
+    }
+    
+    AppState.gallery.currentCount = endIndex;
+    
+    // Update count display
+    DOM.galleryCount.textContent = `(${AppState.gallery.currentCount}/${AppState.guestList.length})`;
+    
+    // Show/hide load more button
+    if (AppState.gallery.currentCount < AppState.guestList.length) {
+        DOM.loadMoreBtn.style.display = 'block';
+        DOM.loadMoreBtn.disabled = false;
+        const remaining = AppState.guestList.length - AppState.gallery.currentCount;
+        DOM.loadMoreBtn.textContent = `📥 Xem Thêm (còn ${remaining} mẫu)`;
+    } else {
+        DOM.loadMoreBtn.style.display = 'none';
+    }
+}
+
+// Draw on specific canvas (for gallery generation)
+function drawImageWithTextOnCanvas(ctx, canvas, name) {
+    const cfg = AppState.config;
+    
+    // Clear and draw template
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.drawImage(AppState.templateImage, 0, 0);
+    
+    // Configure text
+    ctx.font = `${cfg.fontWeight} ${cfg.fontSize}px '${cfg.fontFamily}', sans-serif`;
+    ctx.fillStyle = cfg.color;
+    ctx.textBaseline = 'middle';
+    
+    // Draw text with shadow
+    ctx.shadowColor = 'rgba(0, 0, 0, 0.3)';
+    ctx.shadowBlur = 4;
+    ctx.shadowOffsetX = 2;
+    ctx.shadowOffsetY = 2;
+    
+    // Calculate text position and rotation
+    const textHeight = cfg.fontSize;
+    const centerX = cfg.positionX;
+    const centerY = cfg.positionY + textHeight / 2;
+    const rotationRad = (cfg.rotation * Math.PI) / 180;
+    
+    // Save context state
+    ctx.save();
+    
+    // Translate to text position and rotate
+    ctx.translate(centerX, centerY);
+    ctx.rotate(rotationRad);
+    
+    // Set text alignment
+    ctx.textAlign = cfg.align;
+    
+    // Draw text at origin (after translation)
+    ctx.fillText(name, 0, 0);
+    
+    // Reset shadow
+    ctx.shadowColor = 'transparent';
+    
+    // Restore context state
+    ctx.restore();
+}
+
+// ================================
+// Update Position Info Display
+// ================================
+function updatePositionInfo() {
+    const x = Math.round(AppState.config.positionX);
+    const y = Math.round(AppState.config.positionY);
+    DOM.positionInfo.textContent = `Vị trí: X=${x}, Y=${y}`;
+}
+
+// ================================
+// Position Slider Functions
+// ================================
+function updatePositionSliderMaxValues(width, height) {
+    DOM.addText_positionX_slider.max = width;
+    DOM.addText_positionY_slider.max = height;
+    DOM.positionX_max.textContent = `/ ${width}`;
+    DOM.positionY_max.textContent = `/ ${height}`;
+}
+
+function handlePositionXInput(e) {
+    const value = parseInt(e.target.value) || 0;
+    AppState.config.positionX = value;
+    DOM.addText_positionX_slider.value = value;
+    updatePreview();
+}
+
+function handlePositionYInput(e) {
+    const value = parseInt(e.target.value) || 0;
+    AppState.config.positionY = value;
+    DOM.addText_positionY_slider.value = value;
+    updatePreview();
+}
+
+function handlePositionXSlider(e) {
+    const value = parseInt(e.target.value) || 0;
+    AppState.config.positionX = value;
+    DOM.addText_positionX.value = value;
+    updatePreview();
+}
+
+function handlePositionYSlider(e) {
+    const value = parseInt(e.target.value) || 0;
+    AppState.config.positionY = value;
+    DOM.addText_positionY.value = value;
+    updatePreview();
+}
+
+// ================================
+// Font Size Handlers
+// ================================
+function handleFontSizeInput(e) {
+    const value = parseInt(e.target.value) || 40;
+    AppState.config.fontSize = Math.max(10, Math.min(500, value));
+    DOM.addText_fontSize_slider.value = AppState.config.fontSize;
+    updatePreview();
+}
+
+function handleFontSizeSlider(e) {
+    const value = parseInt(e.target.value) || 40;
+    AppState.config.fontSize = value;
+    DOM.addText_fontSize.value = value;
+    updatePreview();
+}
+
+// ================================
+// Rotation Handlers
+// ================================
+function handleRotationInput(e) {
+    const value = parseInt(e.target.value) || 0;
+    AppState.config.rotation = Math.max(-180, Math.min(180, value));
+    DOM.addText_rotation_slider.value = AppState.config.rotation;
+    updatePreview();
+}
+
+function handleRotationSlider(e) {
+    const value = parseInt(e.target.value) || 0;
+    AppState.config.rotation = value;
+    DOM.addText_rotation.value = value;
+    updatePreview();
+}
+
+// ================================
+// Scroll Wheel Zoom
+// ================================
+function handleWheelZoom(e) {
+    if (!AppState.templateImage) return;
+    
+    const coords = getCanvasCoords(e);
+    
+    // Only zoom when hovering over text area
+    if (isInsideTextBounds(coords.x, coords.y)) {
+        e.preventDefault();
+        
+        const delta = e.deltaY > 0 ? -5 : 5; // Scroll down = smaller, scroll up = bigger
+        let newSize = AppState.config.fontSize + delta;
+        newSize = Math.max(10, Math.min(500, newSize));
+        
+        AppState.config.fontSize = newSize;
+        DOM.addText_fontSize.value = newSize;
+        DOM.addText_fontSize_slider.value = newSize;
+        
+        updatePreview();
+    }
+}
+
+// Sync all position inputs (number + slider)
+function syncPositionInputs() {
+    DOM.addText_positionX.value = AppState.config.positionX;
+    DOM.addText_positionY.value = AppState.config.positionY;
+    DOM.addText_positionX_slider.value = AppState.config.positionX;
+    DOM.addText_positionY_slider.value = AppState.config.positionY;
+}
+
+// ================================
+// Update Config from Inputs
+// ================================
+function updateConfigFromInputs() {
+    AppState.config.positionX = parseInt(DOM.addText_positionX.value) || 0;
+    AppState.config.positionY = parseInt(DOM.addText_positionY.value) || 0;
+    AppState.config.fontSize = parseInt(DOM.addText_fontSize.value) || 200;
+    AppState.config.rotation = parseInt(DOM.addText_rotation.value) || 0;
+    AppState.config.color = DOM.addText_color.value;
+    AppState.config.align = DOM.addText_align.value;
+    AppState.config.fontWeight = DOM.addText_fontWeight.value;
+    AppState.config.fontFamily = DOM.addText_fontFamily.value;
+    
+    // Sync sliders
+    DOM.addText_fontSize_slider.value = AppState.config.fontSize;
+    DOM.addText_rotation_slider.value = AppState.config.rotation;
+    
+    syncPositionInputs();
+    updateFontPreview();
+    updatePreview();
+}
+
+// ================================
+// Color Sync
+// ================================
+function syncColorInputs(e) {
+    DOM.addText_colorHex.value = e.target.value;
+    AppState.config.color = e.target.value;
+    updatePreview();
+}
+
+function syncColorInputsReverse(e) {
+    if (/^#[0-9A-Fa-f]{6}$/.test(e.target.value)) {
+        DOM.addText_color.value = e.target.value;
+        AppState.config.color = e.target.value;
+        updatePreview();
+    }
+}
+
+// ================================
+// Canvas Click Handler (Always Active)
+// ================================
+function handleCanvasClick(e) {
+    if (!AppState.templateImage) return;
+    
+    // Don't set position if we just finished dragging
+    if (AppState.drag.justFinishedDrag) {
+        AppState.drag.justFinishedDrag = false;
+        return;
+    }
+    if (AppState.drag.isDragging) return;
+    
+    const rect = AppState.canvas.getBoundingClientRect();
+    const scaleX = AppState.canvas.width / rect.width;
+    const scaleY = AppState.canvas.height / rect.height;
+    
+    const x = Math.round((e.clientX - rect.left) * scaleX);
+    const y = Math.round((e.clientY - rect.top) * scaleY);
+    
+    // Update both number inputs and sliders
+    DOM.addText_positionX.value = x;
+    DOM.addText_positionY.value = y;
+    DOM.addText_positionX_slider.value = x;
+    DOM.addText_positionY_slider.value = y;
+    
+    updateConfigFromInputs();
+}
+
+// ================================
+// Mouse Drag Handlers
+// ================================
+function getCanvasCoords(e) {
+    const rect = AppState.canvas.getBoundingClientRect();
+    const scaleX = AppState.canvas.width / rect.width;
+    const scaleY = AppState.canvas.height / rect.height;
+    
+    return {
+        x: (e.clientX - rect.left) * scaleX,
+        y: (e.clientY - rect.top) * scaleY
+    };
+}
+
+function isInsideTextBounds(x, y) {
+    const bounds = AppState.textBounds;
+    return x >= bounds.x && x <= bounds.x + bounds.width &&
+           y >= bounds.y && y <= bounds.y + bounds.height;
+}
+
+// Check if point is near a corner handle
+function getHandleAtPoint(x, y) {
+    const handleRadius = 12; // Detection radius
+    
+    // Check rotation handle first
+    if (AppState.rotationHandle) {
+        const dx = x - AppState.rotationHandle.x;
+        const dy = y - AppState.rotationHandle.y;
+        if (Math.sqrt(dx * dx + dy * dy) < handleRadius) {
+            return { type: 'rotate', index: 4 };
+        }
+    }
+    
+    // Check corner handles
+    if (AppState.rotatedCorners && AppState.rotatedCorners.length === 4) {
+        for (let i = 0; i < 4; i++) {
+            const corner = AppState.rotatedCorners[i];
+            const dx = x - corner.x;
+            const dy = y - corner.y;
+            if (Math.sqrt(dx * dx + dy * dy) < handleRadius) {
+                return { type: 'resize', index: i };
+            }
+        }
+    }
+    
+    return null;
+}
+
+// Get appropriate cursor for handle
+function getCursorForHandle(handle) {
+    if (!handle) return null;
+    
+    if (handle.type === 'rotate') {
+        return 'grab';
+    }
+    
+    // Diagonal resize cursors based on corner index and rotation
+    const baseCursors = ['nwse-resize', 'nesw-resize', 'nwse-resize', 'nesw-resize'];
+    const rotation = AppState.config.rotation || 0;
+    const rotationIndex = Math.round(rotation / 45) % 8;
+    
+    // Adjust cursor based on rotation
+    if (Math.abs(rotationIndex) <= 1 || Math.abs(rotationIndex) >= 7) {
+        return baseCursors[handle.index];
+    } else if (Math.abs(rotationIndex) >= 3 && Math.abs(rotationIndex) <= 5) {
+        return baseCursors[(handle.index + 1) % 4];
+    } else {
+        return handle.index % 2 === 0 ? 'ns-resize' : 'ew-resize';
+    }
+}
+
+function handleMouseDown(e) {
+    if (!AppState.templateImage) return;
+    
+    const coords = getCanvasCoords(e);
+    
+    // Check for handle click first
+    const handle = getHandleAtPoint(coords.x, coords.y);
+    
+    if (handle) {
+        if (handle.type === 'resize') {
+            // Store center position at start of resize
+            const center = AppState.textCenter;
+            const initialDist = Math.sqrt(
+                Math.pow(coords.x - center.x, 2) +
+                Math.pow(coords.y - center.y, 2)
+            );
+            
+            AppState.resize.isResizing = true;
+            AppState.resize.handleIndex = handle.index;
+            AppState.resize.startX = coords.x;
+            AppState.resize.startY = coords.y;
+            AppState.resize.startFontSize = AppState.config.fontSize;
+            AppState.resize.startCenterX = center.x;
+            AppState.resize.startCenterY = center.y;
+            AppState.resize.initialDistance = initialDist;
+            e.preventDefault();
+            return;
+        } else if (handle.type === 'rotate') {
+            const center = AppState.textCenter;
+            AppState.resize.isResizing = true;
+            AppState.resize.handleIndex = 4; // rotation
+            AppState.resize.startX = coords.x;
+            AppState.resize.startY = coords.y;
+            AppState.resize.startRotation = AppState.config.rotation;
+            AppState.resize.startCenterX = center.x;
+            AppState.resize.startCenterY = center.y;
+            e.preventDefault();
+            return;
+        }
+    }
+    
+    if (isInsideTextBounds(coords.x, coords.y)) {
+        AppState.drag.isDragging = true;
+        AppState.drag.startX = coords.x;
+        AppState.drag.startY = coords.y;
+        AppState.drag.offsetX = coords.x - AppState.config.positionX;
+        AppState.drag.offsetY = coords.y - AppState.config.positionY;
+        
+        AppState.canvas.classList.add('preview-panel__canvas--dragging');
+        e.preventDefault();
+    }
+}
+
+function handleMouseMove(e) {
+    if (!AppState.templateImage) return;
+    
+    const coords = getCanvasCoords(e);
+    
+    // Handle resize/rotate with requestAnimationFrame for smoothness
+    if (AppState.resize.isResizing) {
+        e.preventDefault();
+        
+        // Use requestAnimationFrame for smooth updates
+        if (!AppState.resize.rafPending) {
+            AppState.resize.rafPending = true;
+            requestAnimationFrame(() => {
+                AppState.resize.rafPending = false;
+                
+                const centerX = AppState.resize.startCenterX;
+                const centerY = AppState.resize.startCenterY;
+                
+                if (AppState.resize.handleIndex === 4) {
+                    // Rotation
+                    const startAngle = Math.atan2(
+                        AppState.resize.startY - centerY,
+                        AppState.resize.startX - centerX
+                    );
+                    const currentAngle = Math.atan2(
+                        coords.y - centerY,
+                        coords.x - centerX
+                    );
+                    const angleDiff = (currentAngle - startAngle) * (180 / Math.PI);
+                    let newRotation = AppState.resize.startRotation + angleDiff;
+                    
+                    while (newRotation > 180) newRotation -= 360;
+                    while (newRotation < -180) newRotation += 360;
+                    
+                    AppState.config.rotation = Math.round(newRotation);
+                    DOM.addText_rotation.value = AppState.config.rotation;
+                    DOM.addText_rotation_slider.value = AppState.config.rotation;
+                } else {
+                    // Resize
+                    const currentDist = Math.sqrt(
+                        Math.pow(coords.x - centerX, 2) +
+                        Math.pow(coords.y - centerY, 2)
+                    );
+                    
+                    const scale = currentDist / AppState.resize.initialDistance;
+                    let newSize = Math.round(AppState.resize.startFontSize * scale);
+                    newSize = Math.max(10, Math.min(500, newSize));
+                    
+                    AppState.config.fontSize = newSize;
+                    DOM.addText_fontSize.value = newSize;
+                    DOM.addText_fontSize_slider.value = newSize;
+                }
+                
+                const name = DOM.previewName.value || 'Text ở đây';
+                drawImageWithText(name, false);
+            });
+        }
+        return;
+    }
+    
+    // Update cursor based on hover state
+    if (!AppState.drag.isDragging) {
+        const handle = getHandleAtPoint(coords.x, coords.y);
+        if (handle) {
+            AppState.canvas.style.cursor = getCursorForHandle(handle);
+        } else if (isInsideTextBounds(coords.x, coords.y)) {
+            AppState.canvas.style.cursor = 'move';
+        } else {
+            AppState.canvas.style.cursor = 'crosshair';
+        }
+    }
+    
+    if (!AppState.drag.isDragging) return;
+    
+    e.preventDefault();
+    
+    // Use requestAnimationFrame for smooth drag
+    if (!AppState.drag.rafPending) {
+        AppState.drag.rafPending = true;
+        requestAnimationFrame(() => {
+            AppState.drag.rafPending = false;
+            
+            // Calculate new position
+            let newX = coords.x - AppState.drag.offsetX;
+            let newY = coords.y - AppState.drag.offsetY;
+            
+            // Clamp
+            newX = Math.max(-100, Math.min(newX, AppState.canvas.width + 100));
+            newY = Math.max(0, Math.min(newY, AppState.canvas.height));
+            
+            const displayX = Math.round(newX);
+            const displayY = Math.round(newY);
+            
+            AppState.config.positionX = newX;
+            AppState.config.positionY = newY;
+            DOM.addText_positionX.value = displayX;
+            DOM.addText_positionY.value = displayY;
+            DOM.addText_positionX_slider.value = displayX;
+            DOM.addText_positionY_slider.value = displayY;
+            
+            updatePositionInfo();
+            
+            const name = DOM.previewName.value || 'Text ở đây';
+            drawImageWithText(name, false);
+        });
+    }
+}
+
+function handleMouseUp(e) {
+    if (AppState.resize.isResizing) {
+        AppState.resize.isResizing = false;
+        AppState.resize.handleIndex = -1;
+        AppState.drag.justFinishedDrag = true;
+        updatePreview(); // Redraw with bounds indicator
+        return;
+    }
+    
+    if (AppState.drag.isDragging) {
+        AppState.drag.isDragging = false;
+        AppState.drag.justFinishedDrag = true;
+        AppState.canvas.classList.remove('preview-panel__canvas--dragging');
+        updatePreview(); // Redraw with bounds indicator
+    }
+}
+
+// ================================
+// Touch Drag Handlers (Mobile)
+// ================================
+function handleTouchStart(e) {
+    if (!AppState.templateImage) return;
+    
+    const touch = e.touches[0];
+    const rect = AppState.canvas.getBoundingClientRect();
+    const scaleX = AppState.canvas.width / rect.width;
+    const scaleY = AppState.canvas.height / rect.height;
+    
+    const coords = {
+        x: (touch.clientX - rect.left) * scaleX,
+        y: (touch.clientY - rect.top) * scaleY
+    };
+    
+    if (isInsideTextBounds(coords.x, coords.y)) {
+        AppState.drag.isDragging = true;
+        AppState.drag.startX = coords.x;
+        AppState.drag.startY = coords.y;
+        AppState.drag.offsetX = coords.x - AppState.config.positionX;
+        AppState.drag.offsetY = coords.y - AppState.config.positionY;
+        e.preventDefault();
+    }
+}
+
+function handleTouchMove(e) {
+    if (!AppState.drag.isDragging) return;
+    
+    const touch = e.touches[0];
+    const rect = AppState.canvas.getBoundingClientRect();
+    const scaleX = AppState.canvas.width / rect.width;
+    const scaleY = AppState.canvas.height / rect.height;
+    
+    const coords = {
+        x: (touch.clientX - rect.left) * scaleX,
+        y: (touch.clientY - rect.top) * scaleY
+    };
+    
+    let newX = coords.x - AppState.drag.offsetX;
+    let newY = coords.y - AppState.drag.offsetY;
+    
+    // Allow text to be positioned anywhere
+    newX = Math.max(-100, Math.min(newX, AppState.canvas.width + 100));
+    newY = Math.max(0, Math.min(newY, AppState.canvas.height));
+    
+    const displayX = Math.round(newX);
+    const displayY = Math.round(newY);
+    
+    AppState.config.positionX = newX;
+    AppState.config.positionY = newY;
+    DOM.addText_positionX.value = displayX;
+    DOM.addText_positionY.value = displayY;
+    DOM.addText_positionX_slider.value = displayX;
+    DOM.addText_positionY_slider.value = displayY;
+    
+    updatePositionInfo();
+    
+    const name = DOM.previewName.value || 'Text ở đây';
+    drawImageWithText(name, false);
+    
+    e.preventDefault();
+}
+
+function handleTouchEnd(e) {
+    if (AppState.drag.isDragging) {
+        AppState.drag.isDragging = false;
+        AppState.drag.justFinishedDrag = true;
+        updatePreview();
+    }
+}
+
+// ================================
+// Generate All Invitations
+// ================================
+async function generateAllInvitations() {
+    if (!AppState.templateImage) {
+        alert('Vui lòng tải ảnh template trước!');
+        return;
+    }
+    
+    if (AppState.guestList.length === 0) {
+        alert('Vui lòng tải danh sách khách mời!');
+        return;
+    }
+    
+    DOM.generateAll.disabled = true;
+    DOM.progressBar.style.display = 'block';
+    
+    try {
+        const zip = new JSZip();
+        const format = DOM.addText_outputFormat.value;
+        const quality = parseFloat(DOM.addText_quality.value);
+        const mimeType = format === 'png' ? 'image/png' : 'image/jpeg';
+        
+        // Track used filenames to avoid duplicates
+        const usedFileNames = new Map();
+        
+        for (let i = 0; i < AppState.guestList.length; i++) {
+            const guest = AppState.guestList[i];
+            const fullName = guest.title ? `${guest.title} ${guest.name}` : guest.name;
+            
+            // Draw invitation (without bounds for export)
+            drawImageWithText(fullName, false);
+            
+            // Convert to blob
+            const blob = await new Promise((resolve, reject) => {
+                try {
+                    AppState.canvas.toBlob((b) => {
+                        if (b) resolve(b);
+                        else reject(new Error('Không thể tạo ảnh'));
+                    }, mimeType, quality);
+                } catch (err) {
+                    reject(err);
+                }
+            });
+            
+            // Add to zip with unique filename (include index to prevent duplicates)
+            const baseName = sanitizeFileName(guest.name);
+            let fileName = baseName;
+            
+            // Check if filename already exists, add suffix if needed
+            if (usedFileNames.has(baseName)) {
+                const count = usedFileNames.get(baseName) + 1;
+                usedFileNames.set(baseName, count);
+                fileName = `${baseName}_${count}`;
+            } else {
+                usedFileNames.set(baseName, 1);
+            }
+            
+            fileName = `${String(i + 1).padStart(3, '0')}_${fileName}.${format}`;
+            zip.file(fileName, blob);
+            
+            // Update progress
+            const progress = ((i + 1) / AppState.guestList.length) * 100;
+            DOM.progressBarFill.style.width = `${progress}%`;
+            DOM.progressText.textContent = `${i + 1}/${AppState.guestList.length}`;
+            
+            // Allow UI to update
+            await new Promise(r => setTimeout(r, 10));
+        }
+        
+        // Generate and download zip
+        updateStatusText('📦 Đang nén file...');
+        const zipBlob = await zip.generateAsync({ 
+            type: 'blob',
+            compression: 'DEFLATE',
+            compressionOptions: { level: 6 }
+        });
+        downloadBlob(zipBlob, 'Thiep_Moi_' + Date.now() + '.zip');
+        
+        updateStatusText(`✅ Đã tạo ${AppState.guestList.length} thiệp mời!`);
+    } catch (error) {
+        console.error('Error generating invitations:', error);
+        alert('Có lỗi xảy ra: ' + error.message);
+        updateStatusText('❌ Lỗi khi tạo thiệp mời');
+    } finally {
+        DOM.generateAll.disabled = false;
+        DOM.progressBar.style.display = 'none';
+    }
+}
+
+// ================================
+// Utility Functions
+// ================================
+function sanitizeFileName(name) {
+    return name
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .replace(/đ/g, 'd')
+        .replace(/Đ/g, 'D')
+        .replace(/[^a-zA-Z0-9]/g, '_');
+}
+
+function downloadBlob(blob, filename) {
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+}
+
+function updateStatusText(text) {
+    DOM.statusText.textContent = text;
+}
+
+function debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+}
+
+// Throttle for smooth animations
+function throttle(func, limit) {
+    let inThrottle;
+    let lastArgs;
+    return function(...args) {
+        lastArgs = args;
+        if (!inThrottle) {
+            func.apply(this, lastArgs);
+            inThrottle = true;
+            requestAnimationFrame(() => {
+                inThrottle = false;
+            });
+        }
+    };
+}
+
+// ================================
+// Initialize App
+// ================================
+document.addEventListener('DOMContentLoaded', init);
+
+    </script>
+</body>
+</html>
